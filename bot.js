@@ -106,7 +106,7 @@ client.on(`message`, message => {
 // Handle swear words
 client.on(`message`, message => {
 	for (var i=0; i < swear_words.length; i++) {
-		if (message.content.toLowerCase.includes(swear_words)) {
+		if (message.content.toLowerCase.includes(swear_words[i])) {
 			message.delete();
 			message.channel.send(mute_content);
 			console.log(`Someone tried to swear in channel ${message.channel}`);
