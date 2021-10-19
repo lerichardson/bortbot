@@ -1,7 +1,5 @@
 const Discord = require(`discord.js`);
-const { Permissions } = require(`discord.js`);
-const fetch = require(`node-fetch`);
-const { prefix, token } = require(`./bot-config.json`);
+const { prefix } = require(`./bot-config.json`);
 const { swear_words, mute_content } = require(`./swear-words.json`);
 const client = new Discord.Client();
 client.once(`ready`, () => {
