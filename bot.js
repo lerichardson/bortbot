@@ -5,7 +5,7 @@ const client = new Discord.Client();
 client.once(`ready`, () => {
 	console.log(`Ready!`);
 });
-bot.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', member => {
     member.guild.channels.get(member.guild.channels.get('JOIN/LEAVE Channel ID')).send(new Discord.MessageEmbed()
 	.setColor(`#FFF200`)
 	.setTitle(`Hi!`)
