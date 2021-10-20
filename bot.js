@@ -5,6 +5,19 @@ const client = new Discord.Client();
 client.once(`ready`, () => {
 	console.log(`Ready!`);
 });
+bot.on('guildMemberAdd', member => {
+    member.guild.channels.get(member.guild.channels.get('JOIN/LEAVE Channel ID')).send(new Discord.MessageEmbed()
+	.setColor(`#FFF200`)
+	.setTitle(`Hi!`)
+	.setDescription(`Thanks for adding me!`)
+	.addFields(
+		{ name: `Command Prefix`, value: `>` },
+		{ name: `Invite Link`, value: `https://shrtco.de/bortbot` },
+		{ name: `Support Server`, value: `https://shrtco.de/bortbothelp` },
+		{ name: `Github`, value: `https://bingus.link/BortbotGithub` }
+	)
+	.setFooter(`Bortbot v0.75.3 by Litbelb`));
+});
 const commandListEmbed = new Discord.MessageEmbed()
 	.setColor(`#FFF200`)
 	.setTitle(`Commands`)
