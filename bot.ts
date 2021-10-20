@@ -18,6 +18,7 @@ const commandListEmbed = new Discord.MessageEmbed()
 	)
 	.setFooter(`Bortbot v0.75.3 by Litbelb`);
 client.on(`message`, (message: { content: string; author: { bot: any; }; channel: { send: (arg0: string) => void; startTyping: (arg0: number | undefined) => void; stopTyping: (arg0: boolean | undefined) => void; bulkDelete: (arg0: number) => void; }; delete: () => void; member: { hasPermission: (arg0: string) => boolean; id: any; }; }) => {
+    const adminPerms = message.member.hasPermission(`ADMINISTRATOR`);
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -25,7 +26,7 @@ client.on(`message`, (message: { content: string; author: { bot: any; }; channel
 	if (command === `privacy`) {
         message.channel.send(`Bortbot drops any logs every 30 days and are kept on my server and never sold.`);
 		console.log(`Privacy command was run`);
-	} 
+	}
 	if (command === `ping`) {
 		message.channel.send(`:ping_pong: Pong.`);
 		console.log(`Ping requested.`);
@@ -44,7 +45,7 @@ client.on(`message`, (message: { content: string; author: { bot: any; }; channel
 		`);
 	}
 	if (command === `clear`) {
-		if (message.member.hasPermission(`ADMINISTRATOR`)) {
+		if (adminPerms === true) {
 			message.channel.startTyping(1);
 			setTimeout(function(){ message.channel.stopTyping(true); message.channel.bulkDelete(100); }, 2500);
 			console.log(`Successfully cleared channel: ${message.channel}`);
@@ -55,7 +56,7 @@ client.on(`message`, (message: { content: string; author: { bot: any; }; channel
 			setTimeout(function(){ message.channel.send(`Success! This message will be deleted in 1`); }, 7500);
 			setTimeout(function(){ message.channel.bulkDelete(100); }, 8500);
 		}
-		if (message.member.hasPermission(`ADMINISTRATOR`) === false) {
+		if (adminPerms === false) {
 			message.channel.startTyping(1);
 			message.channel.send(`Bruh. You don't have that permission.`);
 			message.channel.stopTyping(true);
@@ -74,7 +75,7 @@ client.on(`message`, (message: { content: string; author: { bot: any; }; channel
                 message.channel.send(`https://dm2302files.storage.live.com/y4mljd2uXKEHYSzP5KDIMeEsEA0KU3CfxJi_NECRdP2eWhzH_qo0E3XaGU623FFjacBSNXfu25CyNYUn6QZjVnUsbf8mvtDBpcMG2VCP3Kz66GkdtM1S90PxMhoDtbCr43Re96qH74RqNOA_jW22KSKr-bX9O4grZOy_SfEfCedirw78iGIuBAUSt_c4e2YU3IOVdBUriUT8ro6ogqeQmLaig/Screenshot_20210416-134135__01.jpg?psid=1&width=670&height=404`);
 	}
 	if (command === 'vox-mod') {
-		if (message.member.hasPermission(`ADMINISTRATOR`)) {
+		if (adminPerms === true) {
 			if (!args.length) {
 				return message.channel.send(`You didn't provide an operator to the mod command!`);
 			} else if (args[0] === 'foo') {
@@ -82,7 +83,7 @@ client.on(`message`, (message: { content: string; author: { bot: any; }; channel
 			}
 		message.channel.send(`Command name: ${command}\nArguments: ${args}`);
 		}
-		if (message.member.hasPermission(`ADMINISTRATOR`) === false) {
+		if (adminPerms === false) {
 			message.channel.send("That's a special command for admins, not for you, you puny not-moderator");
 		}
 	}
