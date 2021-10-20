@@ -1,3 +1,5 @@
+import { log } from "console";
+
 const Discord = require(`discord.js`);
 const { prefix } = require(`./bot-config.json`);
 const { swear_words, mute_content } = require(`./swear-words.json`);
@@ -90,6 +92,7 @@ client.on(`message`, (message: { content: string; author: { bot: any; }; channel
 	if (command === `vox-sus`) {
 		message.channel.send(`I'm working on this command, after it blew up. If you'd like to help with development, please create a pr on github (https://bingus.link/BortbotGitHub)`)
 	}
+    console.log(args);
 });
 // Handle swear words
 client.on(`message`, (message: { content: string; delete: () => void; channel: { send: (arg0: any) => void; }; }) => {
