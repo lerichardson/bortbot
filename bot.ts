@@ -62,11 +62,7 @@ client.on(`message`, (message: { content: string; author: { bot: any; }; channel
 			console.log(`User ${message.member.id} tried to clear channel ${message.channel}`);
 		}
 	}
-	if (command === `help`) {
-		message.channel.startTyping(5);
-		setTimeout(function(){ message.channel.send(commandListEmbed); message.channel.stopTyping(true); }, 2500);
-	}
-	if (command === `?`) {
+	if (command === `help` || command === `?`) {
 		message.channel.startTyping(5);
 		setTimeout(function(){ message.channel.send(commandListEmbed); message.channel.stopTyping(true); }, 2500);
 	}
